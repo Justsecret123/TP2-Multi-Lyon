@@ -1,39 +1,56 @@
 import React from "react";
-import Postit from "./postit.component";
+const {Todo, TodoForm} = require ("./postit.component");
 
 
-
-
-function Board(){
-  
-  const [boards, setBoards] =  React.useState([
+function Board() { // Isn't it a board itself ? 
+  const [todos, setTodos] = React.useState([
     {
-      type: "board", 
-      id: 1,
-      postits: []
+        text: "Learn about Ibrahim Serouis",
+        isCompleted: false
     },
     {
-      type: "board", 
-      id: 2, 
-      postits: []
+        text: "Meet Ibrahim Serouis for lunch",
+        isCompleted: false
+    },
+    {
+        text: "Build really cool Ibrahim Serouis app",
+        isCompleted: false
     }
   ]);
 
-  const addBoard = id => {
-    const newBoard = [...boards, { id }];
-    setTodos(newBoard);
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
   return (
-    <div className="container-fluid">
-      {boards.map((board, index) => (
-        <div className="board">
-          <Postit/>
-        </div>
-      ))}
+    <div className="app">
+      <div className="todo-list">
+        {todos.map((todo, index) => (
+          <Todo
+            key={index}
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+          />
+        ))}
+        <TodoForm addTodo={addTodo} />
+      </div>
     </div>
-  )
-
+  );
 }
 
 export default Board;
