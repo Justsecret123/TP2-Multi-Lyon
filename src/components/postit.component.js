@@ -38,7 +38,7 @@ function TodoForm({ addTodo }) {
     );
   }
 
-function Postit() { 
+function Postit() {
   const [todos, setTodos] = React.useState([
     {
         text: "Learn about Ibrahim Serouis",

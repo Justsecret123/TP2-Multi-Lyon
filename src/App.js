@@ -90,3 +90,6 @@ function App() {
 }
 
 export default App;
+
+// Possibilité d'afficher les éléments sur la même page, puis modifier le style en fonction 
+// de l'url et de l'élément que l'on souhaite afficher
