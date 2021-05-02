@@ -39,7 +39,6 @@ export default function CustomAppBar(){
                 <Typography variant="h6" className={classes.title}>
                   Ibrahim Serouis
                 </Typography>
-                <Button color="inherit"> <AddCircleIcon/> </Button>
                 </Toolbar>
             </AppBar>
           </div>

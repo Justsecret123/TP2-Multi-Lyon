@@ -3,7 +3,7 @@ body{
 }
 
 .board {
-    height: 100vh;
+    height: 30vh;
     padding: 30px;
     font-family: 'Segoe UI';
     display: inline-block;

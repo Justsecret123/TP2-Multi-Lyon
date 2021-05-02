@@ -50,9 +50,9 @@ function Board(props){
   return (
     <div className="container-fluid">
       <Button color="inherit" onClick={addBoard}> 
-      <AddCircleIcon/> 
+      <AddCircleIcon style={{color: "white"}}/> 
       </Button>
-
+      <br></br>
       {boards.map((board, index) => (
         <div className="board" key={index}>
           <Postit/>
