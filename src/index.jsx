@@ -25,3 +25,6 @@ const Index = () => {
 
 
 ReactDOM.render(<Index />, document.getElementById('root'));
+
+//Récupérer l'ID dans la route 
+//Display: none pour les postits aux ID différents de params *:id
