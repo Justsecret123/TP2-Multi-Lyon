@@ -3,7 +3,7 @@ import React from "react";
 import Postit from "./postit.component";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 function Board(props){
@@ -41,23 +41,29 @@ function Board(props){
     });
   }
 
-  // useEffect(()=>{
-  //   function handleBoardsChange(){
-
-  //   }
-  // });
-
   return (
     <div className="container-fluid">
       <Button color="inherit" onClick={addBoard}> 
       <AddCircleIcon style={{color: "white"}}/> 
       </Button>
       <br></br>
-      {boards.map((board, index) => (
-        <div className="board" key={index}>
-          <Postit/>
-        </div>
-      ))}
+      <Router>
+        <Route path="/">
+            {
+              boards.map((board, index) => (
+                <div className="board" key={index}>
+                  <Postit/>
+                </div>
+              ))
+            }
+        </Route>
+        <Switch>
+          <Route
+            path="/:id"
+            render={(routeProps) => <Board boards={boards} match={routeProps.match} />}
+          />
+        </Switch>
+      </Router>
 
     </div>
 

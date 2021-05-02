@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
       filename: "[name].js"
     }, // NEW Ends
     plugins: [htmlPlugin],
+    devtool: 'eval-source-map',
     module: {
       rules: [
         {
