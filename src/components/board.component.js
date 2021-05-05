@@ -1,34 +1,33 @@
-import { useEventCallback } from "@material-ui/core";
 import React from "react";
 import Postit from "./postit.component";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
-function Board(props){
+function Board(boards){
   
-  const [boards, setBoards] =  React.useState([
-    {
-      type: "board", 
-      id: 1,
-      key: 1,
-      postits: []
-    },
-    {
-      type: "board", 
-      id: 2, 
-      key: 2,
-      postits: []
-    }, 
-    {
-      type: "board", 
-      id: 3, 
-      key: 3,
-      postits: []
-    }
-  ]);
-  console.log(boards);
+  // const [boards, setBoards] =  React.useState([
+  //   {
+  //     type: "board", 
+  //     id: 1,
+  //     key: 1,
+  //     postits: []
+  //   },
+  //   {
+  //     type: "board", 
+  //     id: 2, 
+  //     key: 2,
+  //     postits: []
+  //   }, 
+  //   {
+  //     type: "board", 
+  //     id: 3, 
+  //     key: 3,
+  //     postits: []
+  //   }
+  // ]);
+  // console.log(boards);
+
 
   const addBoard = () => {
     var boardsList = [...boards];
@@ -36,7 +35,7 @@ function Board(props){
     var newBoard = { type: "board", id: index, key: index, postits: []}
     setBoards(boards => {
       var j = [...boards, newBoard];
-      console.log(j);
+      // console.log(j);
       return j;
     });
   }
@@ -47,29 +46,21 @@ function Board(props){
       <AddCircleIcon style={{color: "white"}}/> 
       </Button>
       <br></br>
-      <Router>
-        <Route path="/">
-            {
-              boards.map((board, index) => (
-                <div className="board" key={index}>
-                  <Postit/>
-                </div>
-              ))
-            }
-        </Route>
-        <Switch>
-          <Route
-            path="/:id"
-            render={(routeProps) => <Board boards={boards} match={routeProps.match} />}
-          />
-        </Switch>
-      </Router>
-
+        {
+          boards.map((board, index) => (
+          <div className="board" key={index}>
+            <Postit/>
+            </div>
+          ))
+        }
     </div>
-
-  
+    
   )
 
 }
 
-export default Board;
+export default Board; 
+
+//Il faut envelopper le Board avec WithRouter
+//Paramètre du composant : props
+//exporter les proptypes et boardtypes du composant
