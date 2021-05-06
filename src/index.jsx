@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import CustomAppBar from "./components/custom-appbar.component";
 import Board from "./components/board.component";
-import { HashRouter as Router, Switch,Route, useParams} from "react-router-dom";
+import { HashRouter as Router, Switch,Route } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
