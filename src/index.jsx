@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import store from "./store/index"; 
 import { createBoard, createPostit, deletePostit } from "./actions/index"; 
+import  { Provider } from "react-redux";
 
 window.store = store;
 window.createBoard = createBoard;
@@ -85,4 +86,11 @@ function Index(){
   );
 };
 
-ReactDOM.render(<Index/>, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store = {store}>
+      <Index/>
+    </Provider>
+  </React.StrictMode>
+, 
+document.getElementById('root'));

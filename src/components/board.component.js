@@ -1,10 +1,19 @@
 import React from "react";
 import Postit from "./postit.component";
 import { useParams, withRouter, Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    boards: state.boards,
+  }
+}
 
 function Board(props){
 
-  let boards = props.boards;
+  let boards = props;
+  // console.log(props);
   let {id} = useParams();
   
   return (
@@ -31,4 +40,4 @@ function Board(props){
 
 }
 
-export default withRouter(Board); 
+export default connect(mapStateToProps)(Board); 
