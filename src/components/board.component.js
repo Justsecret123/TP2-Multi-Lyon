@@ -32,7 +32,3 @@ function Board(props){
 }
 
 export default withRouter(Board); 
-
-//Il faut envelopper le Board avec WithRouter
-//Paramètre du composant : props
-//exporter les proptypes et boardtypes du composant

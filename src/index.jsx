@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import CustomAppBar from "./components/custom-appbar.component";
 import Board from "./components/board.component";
 import { HashRouter as Router, Switch,Route } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import store from "./store/index"; 
+import { createBoard, createPostit, deletePostit } from "./actions/index"; 
 
+window.store = store;
+window.createBoard = createBoard;
+window.createPostit = createPostit;
+window.deletePostit = deletePostit;
 
 
 let initial = [
@@ -41,12 +47,10 @@ let initial = [
 
 
 function Index(){
-  
+
   const [boards, setBoards] =  useState(initial);
 
-  useEffect(()=>{
-    console.log("Boards modifiés !");
-  },[boards])
+
 
   const addBoard = () => {
     var boardsList = [...boards];
