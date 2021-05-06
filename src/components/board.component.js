@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Postit from "./postit.component";
 import { useParams, withRouter, Link } from "react-router-dom";
 
