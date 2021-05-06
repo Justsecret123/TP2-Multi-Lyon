@@ -47,9 +47,8 @@ function Postit(props) {
 
   const [todos, setTodos] = useState(props.postits);
 
-  console.log(props);
-
   useEffect(()=>{
+    setTodos(props.postits);
   },[props.postits]);
 
   const addTodo = text => {

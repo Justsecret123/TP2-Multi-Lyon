@@ -24,7 +24,12 @@ let initial = [
     type: "board", 
     id: 2, 
     key: 2,
-    postits: []
+    postits: [
+      {
+        text: "Et moi le deuxième :D", 
+        isCompleted: false
+      }
+    ]
   }, 
   {
     type: "board", 
@@ -69,8 +74,6 @@ function Index(){
         <Route exact path="/:id">
           <div className="container">
             <Board boards={boards} />
-            {/* //Utilisation de match?  */}
-            {/* <Board boards={boards}/> */}
           </div>
         </Route>
       </Switch>
@@ -79,5 +82,3 @@ function Index(){
 };
 
 ReactDOM.render(<Index/>, document.getElementById('root'));
-
-//Display: none pour les postits aux ID différents de params *:id
