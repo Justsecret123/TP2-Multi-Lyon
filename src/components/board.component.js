@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Postit from "./postit.component";
-import { useParams, withRouter } from "react-router-dom";
+import { useParams, withRouter, Link } from "react-router-dom";
 
+
+let initialState = [
+  {
+      text: "Learn about Ibrahim Serouis",
+      isCompleted: false
+  },
+  {
+      text: "Meet Ibrahim Serouis for lunch",
+      isCompleted: false
+  },
+  {
+      text: "Build really cool Ibrahim Serouis app",
+      isCompleted: false
+  }
+]
 
 function Board(props){
 
-  console.log(props); //Test
+  const [todos, setTodos] = useState(initialState);
+
+  // console.log(props); //Test
 
   let boards = props.boards;
   let {id} = useParams();
 
+  useEffect(()=>{
+    console.log("Board modifié !");
+  },[todos]);
+  
+
   return (
     <div className="container-fluid">
         {
-          //Utilisation de match ? 
+          id == null || id == undefined ?
+          //Utilisation de match ?
           boards.map((board, index) => (
           <div className="board" key={index}>
-            <Postit/>
+            {/* <Link to ={"/"+board.id} target="_blank">Goto</Link> */}
+            <Postit postits = {board.postits}/>
             </div>
+          )):
+          boards.map((board, index) => (
+            board.id == id ? 
+            <div className="board" key={index}>
+              <Postit postits = {board.postits} />
+            </div>
+            : ""
           ))
         }
     </div>

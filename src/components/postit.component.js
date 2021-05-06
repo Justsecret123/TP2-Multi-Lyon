@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { withRouter } from "react-router";
 import "/src/App.css";
 
 function Todo({ todo, index, completeTodo, removeTodo  }) {
@@ -17,8 +18,12 @@ function Todo({ todo, index, completeTodo, removeTodo  }) {
 };
 
 function TodoForm({ addTodo }) {
-    const [value, setValue] = React.useState("");
-  
+
+    const [value, setValue] = useState("");
+
+    useEffect(()=>{
+    },[value]);
+
     const handleSubmit = e => {
       e.preventDefault();
       if (!value) return;
@@ -39,20 +44,13 @@ function TodoForm({ addTodo }) {
   }
 
 function Postit(props) {
-  const [todos, setTodos] = React.useState([
-    {
-        text: "Learn about Ibrahim Serouis",
-        isCompleted: false
-    },
-    {
-        text: "Meet Ibrahim Serouis for lunch",
-        isCompleted: false
-    },
-    {
-        text: "Build really cool Ibrahim Serouis app",
-        isCompleted: false
-    }
-  ]);
+
+  const [todos, setTodos] = useState(props.postits);
+
+  console.log(props);
+
+  useEffect(()=>{
+  },[props.postits]);
 
   const addTodo = text => {
     const newTodos = [...todos, { text }];
@@ -89,4 +87,4 @@ function Postit(props) {
   );
 }
 
-export default Postit;
+export default withRouter(Postit);

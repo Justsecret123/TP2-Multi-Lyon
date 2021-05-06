@@ -13,7 +13,12 @@ let initial = [
     type: "board", 
     id: 1,
     key: 1,
-    postits: []
+    postits: [
+      {
+        text: "Je suis le premier Board", 
+        isCompleted: false
+      }
+    ]
   },
   {
     type: "board", 
@@ -33,6 +38,10 @@ let initial = [
 function Index(){
   
   const [boards, setBoards] =  useState(initial);
+
+  useEffect(()=>{
+    console.log("Boards modifiés !");
+  },[boards])
 
   const addBoard = () => {
     var boardsList = [...boards];
@@ -59,6 +68,7 @@ function Index(){
         </Route>
         <Route exact path="/:id">
           <div className="container">
+            <Board boards={boards} />
             {/* //Utilisation de match?  */}
             {/* <Board boards={boards}/> */}
           </div>
