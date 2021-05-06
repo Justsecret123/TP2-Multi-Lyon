@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-const useStyles = makeStyles((theme) => ({
+const Styles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   
 export default function CustomAppBar(){
 
-  const classes = useStyles();
+  const classes = Styles();
   
   return(
           <div className="container">

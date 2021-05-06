@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import CustomAppBar from "./components/custom-appbar.component";
 import Board from "./components/board.component";
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+import { HashRouter as Router, Switch,Route, useParams} from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-const [boards, setBoards] =  React.useState([
+
+
+let initial = [
   {
     type: "board", 
     id: 1,
@@ -28,22 +27,40 @@ const [boards, setBoards] =  React.useState([
     key: 3,
     postits: []
   }
-]);
+]
 
-function Index(props){
+
+function Index(){
+  
+  const [boards, setBoards] =  useState(initial);
+
+  const addBoard = () => {
+    var boardsList = [...boards];
+    let index = boardsList.length +1;
+    var newBoard = { type: "board", id: index, key: index, postits: []}
+
+    setBoards(boards => {
+      return [...boards, newBoard];
+    });
+
+  }
+
   return (
     <Router>
+       <CustomAppBar/>
+        <Button color="inherit" onClick={addBoard}> 
+          <AddCircleIcon style={{color: "white"}}/> 
+        </Button>
       <Switch>
         <Route exact path="/">
           <div className="container">
-            <CustomAppBar/>
             <Board boards={boards} />
         </div>
         </Route>
         <Route exact path="/:id">
           <div className="container">
-            <CustomAppBar/>
-            <Child/>
+            {/* //Utilisation de match?  */}
+            {/* <Board boards={boards}/> */}
           </div>
         </Route>
       </Switch>
@@ -51,16 +68,6 @@ function Index(props){
   );
 };
 
-function Child(){
-  let {id} = useParams();
-
-  return (
-    <div>
-      <h1>Nous sommes dans le path {id}</h1>
-    </div>
-  );
-}
-
-ReactDOM.render(Index(), document.getElementById('root'));
+ReactDOM.render(<Index/>, document.getElementById('root'));
 
 //Display: none pour les postits aux ID différents de params *:id
