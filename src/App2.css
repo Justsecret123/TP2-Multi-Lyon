@@ -36,13 +36,13 @@ a {
 	border-radius: 3px;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
 	display: flex;
-	font-size: 12px;
+	font-size: 16px;
 	justify-content: space-between;
 	margin-bottom: 6px;
-	padding: 3px 3px;
+	padding: 10px 10px;
 	font-family: 'Segoe UI';
 }
-  
+
 .board:nth-child(odd) .todo {
 	border-top: 5px solid var(--oddColor);
 }
@@ -70,10 +70,10 @@ a {
 .todo button {
 	color: white;
 	border-radius: 5px!important;
-	/* margin-left: 5px; */
+	margin-left: 5px;
 	border: 1px solid white;
-	font-size: 14px;
-	padding: 3px;
+	font-size: 16px;
+	padding: 7px;
 }
 
 .MuiSvgIcon-root {
