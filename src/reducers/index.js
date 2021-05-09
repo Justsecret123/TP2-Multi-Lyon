@@ -2,7 +2,7 @@ const CREATE_BOARD = require("../actions/index").CREATE_BOARD;
 const CREATE_POSTIT = require("../actions/index").CREATE_POSTIT;
 const DELETE_POSTIT = require("../actions/index").DELETE_POSTIT;
 
-let initialState = [
+const initialState = [
   {
     type: "board", 
     id: 1,
@@ -54,7 +54,7 @@ function rootReducer(state = initialState, action) {
       return boards;
     case CREATE_BOARD:
       var newBoard = { type: "board", id: nextBoardId(initialState), key: nextBoardId(initialState), postits: []};
-      return [...initialState, newBoard];
+      return [...state, newBoard];
       default:
         return state
     }

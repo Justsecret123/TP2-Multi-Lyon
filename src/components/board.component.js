@@ -23,10 +23,11 @@ function Board(props){
   let {id} = useParams();
   
   return (
-    <div className="container-fluid">
-      <Button color="inherit"> 
-        <AddCircleIcon style={{color: "rgb(0, 110, 255)"}} onClick={props.createBoard}/> 
+    <div>
+        <Button color="inherit"> 
+         <AddCircleIcon style={{color: "rgb(0, 110, 255)"}} onClick={props.createBoard}/> 
       </Button>
+    <div className="container-fluid">
         {
           id == null || id == undefined ?
           boards.map((board, index) => (
@@ -43,8 +44,8 @@ function Board(props){
             : ""
           ))
         }
+        </div>
     </div>
-    
   )
 
 }
