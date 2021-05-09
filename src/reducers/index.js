@@ -48,6 +48,7 @@ function rootReducer(state = initialState, action) {
       var newPostit = {text: action.text, isCompleted: false }
       var boards = [...state];
       boards[action.index].postits = [...boards[action.index].postits, newPostit];
+      // console.log("AFTER DELETE: ", boards);
       return boards; 
     case DELETE_POSTIT:
       var boards = [...state];

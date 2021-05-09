@@ -61,7 +61,7 @@ function Postit(props) {
     
     const addTodo = text => {
         const newTodos = [...todos, { text }];
-        props.createPostit(id,text);
+        props.createPostit(id-1,text);
         setTodos(newTodos);
     };
 
