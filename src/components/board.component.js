@@ -1,6 +1,6 @@
 import React from "react";
 import Postit from "./postit.component";
-import { useParams, withRouter, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
 function Board(props){
 
   let boards = props.boards;
-  console.log("Props: ", props);
+//   console.log("Props: ", props);
   let {id} = useParams();
   
   return (
@@ -33,7 +33,7 @@ function Board(props){
           boards.map((board, index) => (
           <div className="board" key={index}>
             <Link to = {"/"+board.id} target="_blank">Go to</Link>
-            <Postit postits = {board.postits}/>
+            <Postit board = {board.id} postits = {board.postits}/>
             </div>
           )):
           boards.map((board, index) => (

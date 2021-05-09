@@ -67,6 +67,11 @@ a {
 	color: var(--evenColor);
 }
 
+.todo p {
+	position: relative;
+	top: 1px!important;
+}
+
 .todo button {
 	color: white;
 	border-radius: 5px!important;

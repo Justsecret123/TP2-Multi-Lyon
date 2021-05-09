@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router";
 import "/src/App.css";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import CloseIcon from '@material-ui/icons/Close';
+import { connect } from "react-redux";
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return ({ boards: state });
+const mapStateToProps = (state, ownProps) => {
+    return ({boards: state, props: ownProps });
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        completeTodo: (boardId, postitId) => dispatch({ type: "COMPLETE_TODO", board: boardId, postit: postitId}), 
+        deleteTodo: () => dispatch({type: "DELETE_TODO"}), 
+        deletePostit: (boardId, postitId) => dispatch({type: "DELETE_POSTIT", board: boardId, postit: postitId}),
+        createPostit: (id, text) => dispatch({type: "CREATE_POSTIT", index: id, text: text})
+      }
 }
 
 function Todo({ todo, index, completeTodo, removeTodo  }) {
   return (
     <div
       className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
-      {todo.text}
+      <p style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}>{todo.text}</p>
       <div>
         <button onClick={() => completeTodo(index)}>Complete <AssignmentTurnedInIcon fontSize="small"/> </button>
         <button onClick={() => removeTodo(index)}> <CloseIcon fontSize="small"/> </button>
@@ -27,9 +34,6 @@ function Todo({ todo, index, completeTodo, removeTodo  }) {
 function TodoForm({ addTodo }) {
 
     const [value, setValue] = useState("");
-
-    useEffect(()=>{
-    },[value]);
 
     const handleSubmit = e => {
       e.preventDefault();
@@ -51,46 +55,47 @@ function TodoForm({ addTodo }) {
   }
 
 function Postit(props) {
+    
+    const [todos, setTodos] = useState(props.postits);
+    let id = props.board;
+    
+    const addTodo = text => {
+        const newTodos = [...todos, { text }];
+        props.createPostit(id,text);
+        setTodos(newTodos);
+    };
 
-  const [todos, setTodos] = useState(props.postits);
+    const completeTodo = index => {
+        const newTodos = [...todos];
+        props.completeTodo(id-1, index);
+        newTodos[index].isCompleted = true;
+        setTodos(newTodos);
+    };
 
-  useEffect(()=>{
-    setTodos(props.postits);
-  },[props.postits]);
+    const removeTodo = index => {
+        const newTodos = [...todos];
+        props.deletePostit(id-1,index);
+        newTodos.splice(index, 1);
+        setTodos(newTodos);
+    };
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
-  };
-
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
-  };
-
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  };
-
-  return (
-    <div className="app">
-      <div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
-            key={index}
-            index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-        <TodoForm addTodo={addTodo} />
-      </div>
-    </div>
-  );
+    return (
+        <div className="app">
+            <div className="todo-list">
+            {   todos.map((todo, index) => (
+                    <Todo
+                    key={index}
+                    index={index}
+                    todo={todo}
+                    completeTodo={completeTodo}
+                    removeTodo={removeTodo}
+                    />
+            ))}
+            <TodoForm addTodo={addTodo} />
+            </div>
+        </div>
+    );
 }
 
-export default withRouter(Postit);
+export default connect(mapStateToProps, mapDispatchToProps)(Postit);
+

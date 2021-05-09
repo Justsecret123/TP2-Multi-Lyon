@@ -1,6 +1,7 @@
 const CREATE_BOARD = require("../actions/index").CREATE_BOARD;
 const CREATE_POSTIT = require("../actions/index").CREATE_POSTIT;
 const DELETE_POSTIT = require("../actions/index").DELETE_POSTIT;
+const COMPLETE_TODO = require("../actions/index").COMPLETE_TODO;
 
 const initialState = [
   {
@@ -45,16 +46,22 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_POSTIT:
       var newPostit = {text: action.text, isCompleted: false }
-      var boards = state;
+      var boards = [...state];
       boards[action.index].postits = [...boards[action.index].postits, newPostit];
       return boards; 
     case DELETE_POSTIT:
-      var boards = state;
+      var boards = [...state];
       boards[action.board].postits.splice(action.postit,1);
+      // console.log("AFTER DELETE: ", boards);
       return boards;
     case CREATE_BOARD:
       var newBoard = { type: "board", id: nextBoardId(initialState), key: nextBoardId(initialState), postits: []};
       return [...state, newBoard];
+    case COMPLETE_TODO: 
+      var boards = [...state];
+      boards[action.board].postits[action.postit].isCompleted = true;
+      // console.log("AFTER COMPLETE: ", boards); 
+      return boards;
       default:
         return state
     }
