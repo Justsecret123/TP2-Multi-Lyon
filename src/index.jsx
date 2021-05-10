@@ -3,17 +3,15 @@ import ReactDOM from 'react-dom';
 import CustomAppBar from "./components/custom-appbar.component";
 import Board from "./components/board.component";
 import { HashRouter as Router, Switch,Route } from "react-router-dom";
-import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import store from "./store/index"; 
-import { createBoard, createPostit, deletePostit, completeTodo } from "./actions/index"; 
+import { createBoard, createPostit, deletePostit, completeTodo } from "./actions/index"; 
 import  { Provider } from "react-redux";
 
 window.store = store;
 window.createBoard = createBoard;
 window.createPostit = createPostit;
 window.deletePostit = deletePostit;
-window.completeToto = completeTodo;
+window.completeToto = completeTodo;
 
 
 let initial = [

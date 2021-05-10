@@ -19,32 +19,32 @@ const mapDispatchToProps = (dispatch) => {
 function Board(props){
 
   let boards = props.boards;
-//   console.log("Props: ", props);
+//   console.log("Props: ", props);
   let {id} = useParams();
   
   return (
-    <div>
-        <Button color="inherit"> 
-         <AddCircleIcon style={{color: "rgb(0, 110, 255)"}} onClick={props.createBoard}/> 
+    <div>
+        <Button color="inherit"> 
+         <AddCircleIcon style={{color: "rgb(0, 110, 255)"}} onClick={props.createBoard}/> 
       </Button>
     <div className="container-fluid">
         {
           id == null || id == undefined ?
           boards.map((board, index) => (
           <div className="board" key={index}>
-            <Link to = {"/"+board.id} target="_blank">Go to</Link>
-            <Postit board = {board.id} postits = {board.postits}/>
+            <Link to = {"/"+board.id} >Go to</Link>
+            <Postit board = {board.id} postits = {board.postits}/>
             </div>
           )):
           boards.map((board, index) => (
             board.id == id ? 
             <div className="board" key={index}>
-              <Postit postits = {board.postits} />
+              <Postit board = {board.id} postits = {board.postits} />
             </div>
             : ""
           ))
         }
-        </div>
+        </div>
     </div>
   )
 
