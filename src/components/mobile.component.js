@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from '@material-ui/core/Button';
@@ -6,7 +6,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import MobilePostit from "./mobile-postit.component";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import "/src/Mobile.css";
+import "../../src/Mobile.css";
 import { useHistory } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
@@ -72,7 +72,7 @@ function Mobile(props){
                     </div>
                     :
                     <div className = "board" key={id}>
-                        <MobilePostit postits = {boards[id-1].postits}/> 
+                        <MobilePostit board={id} postits = {boards[id-1].postits}/> 
                     </div>
                 }
             </div>

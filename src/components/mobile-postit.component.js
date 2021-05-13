@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "/src/App.css";
+import React, { useState } from "react";
+import "../../src/App.css";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from "react-redux";
@@ -20,9 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function Todo({ todo, index, completeTodo, removeTodo  }) {
   return (
-    <div
-      className="todo"
-    >
+    <div className="todo">
       <p style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}>{todo.text}</p>
       <div>
         <button onClick={() => completeTodo(index)}>Complete <AssignmentTurnedInIcon fontSize="small"/> </button>
@@ -53,11 +51,13 @@ function TodoForm({ addTodo }) {
         />
       </form>
     );
-  }
+}
 
 function MobilePostit(props) {
+    
+    const [todos, setTodos] = useState(props.postits);
 
-    const [todos, setTodos] = useState(props.postits);
+    const id = props.board;
 
     const addTodo = text => {
         const newTodos = [...todos, { text }];
