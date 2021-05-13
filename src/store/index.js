@@ -9,7 +9,7 @@ const initialState = [
         key: 1,
         postits: [
           {
-            text: "Je suis le premier Board", 
+            text: "Je suis le premier", 
             isCompleted: false
           }
         ]
@@ -41,7 +41,7 @@ const store = createStore(
     rootReducer,
     initialState,
     applyMiddleware(createStateSyncMiddleware(reduxStateConfig)),
-    window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_());
+    window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
 
 initMessageListener(store);
 

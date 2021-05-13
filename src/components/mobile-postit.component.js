@@ -3,6 +3,7 @@ import "/src/App.css";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 const mapStateToProps = (state, ownProps) => {
     return ({boards: state, props: ownProps });
@@ -54,15 +55,10 @@ function TodoForm({ addTodo }) {
     );
   }
 
-function Postit(props) {
-    
-    // console.log("Props dans postits: ", props);
+function MobilePostit(props) {
 
     const [todos, setTodos] = useState(props.postits);
-    let id = props.board;
 
-    
-    
     const addTodo = text => {
         const newTodos = [...todos, { text }];
         props.createPostit(id-1,text);
@@ -101,4 +97,4 @@ function Postit(props) {
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Postit);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MobilePostit));

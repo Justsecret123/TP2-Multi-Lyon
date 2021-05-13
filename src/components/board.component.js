@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const mapStateToProps = (state) => {
-  console.log(state);
+//   console.log(state);
   return ({ boards: state });
 }
 

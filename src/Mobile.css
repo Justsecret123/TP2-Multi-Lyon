@@ -1,0 +1,12 @@
+:root {
+    --oddColor: rgb(0, 110, 255);
+    --evenColor: rgb(1, 236, 178);
+}
+    
+.MuiSvgIcon-colorSecondary {
+    color: var(--oddColor)!important;
+}
+    
+.navigation-buttons {
+    float: right!important;
+}

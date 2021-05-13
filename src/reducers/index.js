@@ -2,6 +2,7 @@ const CREATE_BOARD = require("../actions/index").CREATE_BOARD;
 const CREATE_POSTIT = require("../actions/index").CREATE_POSTIT;
 const DELETE_POSTIT = require("../actions/index").DELETE_POSTIT;
 const COMPLETE_TODO = require("../actions/index").COMPLETE_TODO;
+const SET_BOARD = require("../actions/index").SET_BOARD;
 
 const initialState = [
   {
@@ -10,10 +11,10 @@ const initialState = [
     key: 1,
     postits: [
       {
-        text: "Je suis le premier Board", 
+        text: "Je suis le premier", 
         isCompleted: false
       }
-    ]
+    ], 
   },
   {
     type: "board", 
@@ -35,36 +36,40 @@ const initialState = [
 ]
 
 function nextBoardId(initialState){
-  const maxId = initialState.reduce((maxId, board)=> Math.max(board.id,maxId), -1);
-  return maxId;
+    const maxId = initialState.reduce((maxId, board)=> Math.max(board.id,maxId), -1);
+    return maxId;
 }
 
 
 
 function rootReducer(state = initialState, action) {
-
-  switch (action.type) {
-    case CREATE_POSTIT:
-      var newPostit = {text: action.text, isCompleted: false }
-      var boards = [...state];
-      boards[action.index].postits = [...boards[action.index].postits, newPostit];
-      // console.log("AFTER DELETE: ", boards);
-      return boards; 
-    case DELETE_POSTIT:
-      var boards = [...state];
-      boards[action.board].postits.splice(action.postit,1);
-      // console.log("AFTER DELETE: ", boards);
-      return boards;
-    case CREATE_BOARD:
-      var newBoard = { type: "board", id: nextBoardId(state)+1, key: nextBoardId(state)+1, postits: []};
-      return [...state, newBoard];
-    case COMPLETE_TODO: 
-      var boards = [...state];
-      boards[action.board].postits[action.postit].isCompleted = true;
-      // console.log("AFTER COMPLETE: ", boards); 
-      return boards;
-      default:
-        return state
+    
+    switch (action.type) {
+        case CREATE_POSTIT:
+            var newPostit = {text: action.text, isCompleted: false }
+            var boards = [...state];
+            boards[action.index].postits = [...boards[action.index].postits, newPostit];
+            // console.log("AFTER DELETE: ", boards);
+            return boards; 
+        case DELETE_POSTIT:
+            var boards = [...state];
+            boards[action.board].postits.splice(action.postit,1);
+            // console.log("AFTER DELETE: ", boards);
+            return boards;
+        case CREATE_BOARD:
+            var newBoard = { type: "board", id: nextBoardId(state)+1, key: nextBoardId(state)+1, postits: []};
+            return [...state, newBoard];
+        case COMPLETE_TODO: 
+            var boards = [...state];
+            boards[action.board].postits[action.postit].isCompleted = true;
+            // console.log("AFTER COMPLETE: ", boards); 
+            return boards;
+        case SET_BOARD: 
+            var boards = [...state];
+            boards.currentBoard = action.hash;
+            return boards;
+        default:
+            return state
     }
 
   }
