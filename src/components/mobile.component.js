@@ -10,7 +10,6 @@ import "../../src/Mobile.css";
 import { useHistory } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return ({ boards: state });
 }
 
@@ -27,9 +26,6 @@ function Mobile(props){
 
     let boards = props.boards;
     var {id} = useParams();
-
-
-    // console.log(props);
 
     const currentBoard = id == null || id == undefined ? 1:id;
 
@@ -82,9 +78,7 @@ function Mobile(props){
                 <ArrowForwardIcon color="secondary" onClick={()=> {moveForward(currentBoard)}}/>
             </div>
         </div>
-
     )
-
 }
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Mobile));

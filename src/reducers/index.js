@@ -40,8 +40,6 @@ function nextBoardId(initialState){
     return maxId;
 }
 
-
-
 function rootReducer(state = initialState, action) {
     
     switch (action.type) {
@@ -49,12 +47,10 @@ function rootReducer(state = initialState, action) {
             var newPostit = {text: action.text, isCompleted: false }
             var boards = [...state];
             boards[action.index].postits = [...boards[action.index].postits, newPostit];
-            // console.log("AFTER DELETE: ", boards);
             return boards; 
         case DELETE_POSTIT:
             var boards = [...state];
             boards[action.board].postits.splice(action.postit,1);
-            // console.log("AFTER DELETE: ", boards);
             return boards;
         case CREATE_BOARD:
             var newBoard = { type: "board", id: nextBoardId(state)+1, key: nextBoardId(state)+1, postits: []};
@@ -62,7 +58,6 @@ function rootReducer(state = initialState, action) {
         case COMPLETE_TODO: 
             var boards = [...state];
             boards[action.board].postits[action.postit].isCompleted = true;
-            // console.log("AFTER COMPLETE: ", boards); 
             return boards;
         case SET_BOARD: 
             var boards = [...state];

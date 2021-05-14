@@ -16,7 +16,6 @@ window.deletePostit = deletePostit;
 window.completeToto = completeTodo;
 window.setBoard = setBoard;
 
-
 let initial = [
   {
     type: "board", 

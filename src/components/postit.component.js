@@ -56,13 +56,8 @@ function TodoForm({ addTodo }) {
 
 function Postit(props) {
     
-    // console.log("Props dans postits: ", props);
-
     const [todos, setTodos] = useState(props.postits);
-    let id = props.board;
 
-    
-    
     const addTodo = text => {
         const newTodos = [...todos, { text }];
         props.createPostit(id-1,text);
@@ -82,6 +77,8 @@ function Postit(props) {
         newTodos.splice(index, 1);
         setTodos(newTodos);
     };
+
+    let id = props.board;
 
     return (
         <div className="app">

@@ -20,8 +20,6 @@ const Styles = makeStyles((theme) => ({
 }));
 
 
-
-  
 export default function CustomAppBar(){
 
   const classes = Styles();

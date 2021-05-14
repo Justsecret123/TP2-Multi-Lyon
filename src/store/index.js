@@ -3,8 +3,8 @@ import { createStateSyncMiddleware, initMessageListener } from "redux-stat
 import rootReducer from "../reducers/index";
 
 const initialState = [
-      {
-        type: "board", 
+    {
+        type: "board", 
         id: 1,
         key: 1,
         postits: [
@@ -41,7 +41,8 @@ const store = createStore(
     rootReducer,
     initialState,
     applyMiddleware(createStateSyncMiddleware(reduxStateConfig)),
-    window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
+    window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION()
+);
 
 initMessageListener(store);
 
